@@ -28,7 +28,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link
               to="/"
               className="font-semibold hover:text-blue-600 transition-colors"
@@ -205,7 +205,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/login"
               className="text-slate-600 font-semibold hover:text-blue-600 transition-colors px-4 py-2"
@@ -220,7 +220,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-slate-600 hover:text-blue-600 focus:outline-none p-2"
@@ -258,7 +258,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-slate-200 bg-white overflow-hidden shadow-xl"
+            className="lg:hidden border-t border-slate-200 bg-white overflow-hidden shadow-xl"
           >
             <div className="px-4 py-6 space-y-4">
               <Link
