@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 const CourseDetail = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // Flatten all programs into one searchable array
   const allPrograms: Course[] = [
     ...coursesData.Student_Programs.programs,
     ...coursesData.Faculty_Programs.programs,
@@ -59,7 +58,6 @@ const CourseDetail = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Header Section */}
         <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-white shadow-2xl mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-12 opacity-10">
             <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24">
@@ -116,7 +114,6 @@ const CourseDetail = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Left Column: Curriculum */}
           <div className="md:col-span-2">
             <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <svg
@@ -135,7 +132,6 @@ const CourseDetail = () => {
               Course Curriculum
             </h2>
 
-            {/* Student Programs (List of Topics) */}
             {course.key_topics && (
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                 <ul className="space-y-4">
@@ -153,7 +149,6 @@ const CourseDetail = () => {
               </div>
             )}
 
-            {/* Faculty Programs (Record of Topics) */}
             {course.core_modules && (
               <div className="space-y-4">
                 {Object.entries(course.core_modules).map(
@@ -190,9 +185,7 @@ const CourseDetail = () => {
             )}
           </div>
 
-          {/* Right Column: Assessment Details */}
           <div className="md:col-span-1 space-y-6 sticky top-28">
-            {/* Fees Card */}
             {course.fees && (
               <div className="bg-white rounded-2xl border border-blue-100 shadow-xl shadow-blue-50 p-6 relative overflow-hidden">
                 <div className="absolute -right-4 -top-4 w-24 h-24 bg-blue-50 rounded-full blur-2xl opacity-70"></div>
@@ -206,13 +199,9 @@ const CourseDetail = () => {
                 <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-blue-200 hover:-translate-y-0.5 mt-2 relative z-10">
                   Enroll Now
                 </button>
-                <p className="text-center text-xs text-slate-400 mt-4 relative z-10 font-medium">
-                  100% money-back guarantee for 7 days
-                </p>
               </div>
             )}
 
-            {/* Exam Pattern Card */}
             <div className="bg-indigo-50/50 rounded-2xl border border-indigo-100 p-6">
               <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <svg

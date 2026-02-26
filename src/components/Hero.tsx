@@ -90,12 +90,13 @@ const AnimationOne = ({ isActive }: { isActive: boolean }) => (
     animate={{ opacity: isActive ? 1 : 0 }}
     transition={{ duration: 0.8 }}
     className="w-full h-full flex items-center justify-center relative scale-75 md:scale-100"
+    style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
   >
     {isActive && (
       <div className="relative w-full h-full max-w-md max-h-[400px] flex items-center justify-center perspective-[1000px]">
-        {/* Background Ambient Glows */}
         <motion.div
           className="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -ml-20 -mt-20"
+          style={{ willChange: "transform" }}
           initial={{ scale: 0.8 }}
           animate={{ scale: [0.8, 1.2, 0.8] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -112,7 +113,6 @@ const AnimationOne = ({ isActive }: { isActive: boolean }) => (
           }}
         />
 
-        {/* Central "Welcome" Shield/Badge */}
         <motion.div
           className="w-48 h-48 bg-white/60 backdrop-blur-xl rounded-full border border-white/80 shadow-2xl flex flex-col items-center justify-center relative z-20"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -143,7 +143,6 @@ const AnimationOne = ({ isActive }: { isActive: boolean }) => (
           </div>
         </motion.div>
 
-        {/* Card 1: Expert Mentors */}
         <motion.div
           className="absolute -left-4 md:-left-12 top-10 w-44 bg-white/80 backdrop-blur-xl rounded-xl border border-white shadow-xl p-3 z-30"
           initial={{ x: -30, opacity: 0, rotate: -10 }}
@@ -179,7 +178,6 @@ const AnimationOne = ({ isActive }: { isActive: boolean }) => (
           </div>
         </motion.div>
 
-        {/* Card 2: Build Your Future (Chart) */}
         <motion.div
           className="absolute -right-4 md:-right-10 bottom-12 w-48 bg-white/80 backdrop-blur-xl rounded-xl border border-white shadow-xl p-4 z-30"
           initial={{ x: 30, opacity: 0, rotate: 10 }}
@@ -202,15 +200,15 @@ const AnimationOne = ({ isActive }: { isActive: boolean }) => (
               <motion.div
                 key={i}
                 className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-sm"
-                initial={{ height: "0%" }}
-                animate={{ height: `${h}%` }}
+                style={{ originY: 1, height: `${h}%`, willChange: "transform" }}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
                 transition={{ duration: 1, delay: 1 + i * 0.2, type: "spring" }}
               />
             ))}
           </div>
         </motion.div>
 
-        {/* Floating Confetti/Sparkles */}
         <motion.div
           className="absolute top-4 right-10 text-2xl"
           initial={{ scale: 0, opacity: 0 }}
@@ -243,17 +241,18 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
     animate={{ opacity: isActive ? 1 : 0 }}
     transition={{ duration: 0.8 }}
     className="w-full h-full flex items-center justify-center relative scale-75 md:scale-100"
+    style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
   >
     {isActive && (
       <div className="relative w-full h-full max-w-md max-h-[400px] flex items-center justify-center perspective-[1000px]">
         <motion.div
           className="absolute w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -ml-20 -mt-20"
+          style={{ willChange: "transform" }}
           initial={{ scale: 0.8 }}
           animate={{ scale: [0.8, 1.2, 0.8] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Live Class Grid */}
         <motion.div
           className="w-80 p-3 bg-white/50 backdrop-blur-md rounded-2xl border border-white/60 shadow-xl grid grid-cols-2 gap-3 z-20"
           initial={{ y: 30, rotateY: -15, opacity: 0 }}
@@ -264,7 +263,6 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
             opacity: { duration: 0.8 },
           }}
         >
-          {/* Mentor Video */}
           <div className="col-span-2 h-32 bg-blue-900/90 rounded-xl relative overflow-hidden border border-white/20">
             <motion.div
               className="absolute top-2 left-2 px-2 py-0.5 bg-red-500 rounded text-[10px] text-white font-bold flex items-center gap-1"
@@ -281,7 +279,6 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
             <div className="h-2 w-16 bg-white/20 rounded-full absolute bottom-7 left-14"></div>
           </div>
 
-          {/* Student 1 */}
           <div className="h-20 bg-slate-800 rounded-xl relative overflow-hidden">
             <div className="w-6 h-6 rounded-full bg-indigo-400 absolute bottom-2 left-2 hidden md:block"></div>
             <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-slate-600/50 flex items-center justify-center">
@@ -289,7 +286,6 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
             </div>
           </div>
 
-          {/* Student 2 */}
           <div className="h-20 bg-slate-800 rounded-xl relative overflow-hidden">
             <motion.div
               className="absolute inset-0 border-2 border-green-400 rounded-xl"
@@ -300,7 +296,6 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
           </div>
         </motion.div>
 
-        {/* Floating Chat Box */}
         <motion.div
           className="absolute -right-6 bottom-10 w-40 bg-white/80 backdrop-blur-xl rounded-xl border border-white/80 shadow-2xl p-3 z-30"
           initial={{ x: 20, y: 20, opacity: 0 }}
@@ -338,7 +333,6 @@ const AnimationTwo = ({ isActive }: { isActive: boolean }) => (
           </div>
         </motion.div>
 
-        {/* Floating Hand Raise Icon */}
         <motion.div
           className="absolute -left-4 top-24 w-10 h-10 bg-yellow-100/90 backdrop-blur-md rounded-full border border-yellow-200 shadow-lg flex items-center justify-center z-30"
           initial={{ scale: 0, opacity: 0 }}
@@ -401,13 +395,7 @@ const Hero = () => {
     offset: ["start start", "end end"],
   });
 
-  // Calculate which segment is currently active based on scroll
-  // 0 to 0.33 -> Index 0
-  // 0.33 to 0.66 -> Index 1
-  // 0.66 to 1.0 -> Index 2
-
-  // We use a custom hook to listen to motion value changes and force re-renders
-  // when the active index changes, so React can mount/unmount our animations.
+ 
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -424,14 +412,12 @@ const Hero = () => {
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    // Continuous auto-advance loop
     timeoutId = setTimeout(() => {
       if (containerRef.current) {
         const scrollableDistance =
           containerRef.current.scrollHeight - window.innerHeight;
         let targetScroll = 0;
 
-        // Calculate next position based on current active index to forcefully cross the thresholds (0.33 and 0.66)
         if (activeIndex === 0) {
           targetScroll =
             containerRef.current.offsetTop + scrollableDistance * 0.45;
@@ -439,18 +425,15 @@ const Hero = () => {
           targetScroll =
             containerRef.current.offsetTop + scrollableDistance * 0.85;
         } else if (activeIndex === 2) {
-          // Loop back to Phase 1 (top of container)
           targetScroll = containerRef.current.offsetTop + 10;
         }
 
-        // Force smooth scrolling
         document.documentElement.style.scrollBehavior = "smooth";
         window.scrollTo({
           top: targetScroll,
           behavior: "smooth",
         });
 
-        // Reset scroll behavior after animation finishes
         setTimeout(() => {
           document.documentElement.style.scrollBehavior = "auto";
         }, 1500);
@@ -465,7 +448,6 @@ const Hero = () => {
   return (
     <section ref={containerRef} className="relative h-[250vh] bg-white">
       <div className="sticky top-[3.5rem] md:top-[5rem] h-[calc(100svh-3.5rem)] md:h-[calc(100svh-5rem)] w-full flex flex-col md:flex-row overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 items-center justify-center md:justify-between py-2 md:py-0">
-        {/* Left Side: Animations (Merged into background, no borders) */}
         <div className="w-full h-1/2 md:w-1/2 md:h-[65vh] relative flex items-center justify-center order-1 md:order-none">
           <div className="h-full w-full relative">
             <div className="absolute inset-0 z-0">
@@ -480,7 +462,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Side: Typography */}
         <div className="w-full h-1/2 md:w-1/2 md:h-[70vh] relative flex items-center justify-center lg:pl-16 order-2 md:order-none pb-8 md:pb-0">
           {scrollData.map((item: ScrollItem, index: number) => (
             <TextBlock

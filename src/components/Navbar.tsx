@@ -18,7 +18,6 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b text-slate-800 border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 md:h-20">
-          {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <Link to="/">
               <img
@@ -29,7 +28,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
@@ -44,7 +42,6 @@ const Navbar = () => {
               About
             </Link>
 
-            {/* Courses Dropdown trigger */}
             <div
               className="relative"
               onMouseEnter={() => setIsCoursesDesktopOpen(true)}
@@ -67,7 +64,6 @@ const Navbar = () => {
                 </svg>
               </button>
 
-              {/* Desktop Mega Menu Dropdown */}
               <AnimatePresence>
                 {isCoursesDesktopOpen && (
                   <motion.div
@@ -77,7 +73,6 @@ const Navbar = () => {
                     transition={{ duration: 0.2 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex"
                   >
-                    {/* For Faculty Column */}
                     <div className="w-1/2 p-5 bg-slate-50 border-r border-slate-100">
                       <h3 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4 flex items-center gap-2">
                         <svg
@@ -133,7 +128,6 @@ const Navbar = () => {
                       </ul>
                     </div>
 
-                    {/* For Students Column */}
                     <div className="w-1/2 p-5 bg-white">
                       <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-4 flex items-center gap-2">
                         <svg
@@ -211,7 +205,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Right Side Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/login"
@@ -227,7 +220,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -260,7 +252,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -285,7 +276,6 @@ const Navbar = () => {
                 About
               </Link>
 
-              {/* Mobile Courses Accordion */}
               <div className="border-t border-b border-slate-100 py-2">
                 <button
                   className="w-full flex justify-between items-center px-3 py-2 text-base font-medium text-slate-800 rounded-md hover:bg-blue-50"
@@ -315,7 +305,6 @@ const Navbar = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-4 pr-2 space-y-4 py-2 bg-slate-50/50 mt-1 rounded-lg"
                     >
-                      {/* Mobile Faculty */}
                       <div>
                         <div className="text-xs font-bold text-blue-600 uppercase mb-2 px-3">
                           For Faculty
@@ -331,7 +320,6 @@ const Navbar = () => {
                           </Link>
                         ))}
                       </div>
-                      {/* Mobile Students */}
                       <div>
                         <div className="text-xs font-bold text-indigo-600 uppercase mb-2 px-3 mt-4">
                           For Students

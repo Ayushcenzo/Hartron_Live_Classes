@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 const NextSection = () => {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-white relative overflow-hidden">
-      {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-50 rounded-bl-full -z-10 blur-3xl opacity-60"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-indigo-50 rounded-tr-full -z-10 blur-3xl opacity-60"></div>
 
