@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { coursesData, type Course } from "../data/coursesData";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CourseDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [openModuleIndex, setOpenModuleIndex] = useState<number | null>(null);
+
+  const toggleModule = (index: number) => {
+    setOpenModuleIndex(openModuleIndex === index ? null : index);
+  };
 
   const allPrograms: Course[] = [
     ...coursesData.Student_Programs.programs,
@@ -132,57 +138,79 @@ const CourseDetail = () => {
               Course Curriculum
             </h2>
 
-            {course.key_topics && (
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-                <ul className="space-y-4">
-                  {course.key_topics.map((topic, i) => (
-                    <li key={i} className="flex gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">
-                        {i + 1}
-                      </div>
-                      <div className="pt-1 text-slate-700 font-medium leading-relaxed">
-                        {topic}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {course.core_modules && (
-              <div className="space-y-4">
-                {Object.entries(course.core_modules).map(
-                  ([modName, modDesc], i) => (
-                    <div
-                      key={i}
-                      className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex gap-4"
+            <div className="space-y-4">
+              {course.modules &&
+                course.modules.map((mod, i) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                  >
+                    <button
+                      onClick={() => toggleModule(i)}
+                      className="w-full flex items-center justify-between p-6 bg-white hover:bg-slate-50 transition-colors text-left"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">
-                        <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-slate-800 mb-2">
-                          {modName.replace(/_/g, " ")}
+                      <div className="flex items-center gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">
+                          {i + 1}
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-800">
+                          {mod.module_name}
                         </h3>
-                        <p className="text-slate-600">{modDesc}</p>
                       </div>
-                    </div>
-                  ),
-                )}
-              </div>
-            )}
+                      <svg
+                        className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${openModuleIndex === i ? "rotate-180" : ""}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    <AnimatePresence>
+                      {openModuleIndex === i && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="border-t border-slate-100"
+                        >
+                          <div className="p-6 bg-slate-50/50">
+                            <ul className="space-y-3">
+                              {mod.topics.map((topic, j) => (
+                                <li key={j} className="flex gap-3 items-start">
+                                  <svg
+                                    className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                  </svg>
+                                  <span className="text-slate-600 font-medium leading-relaxed">
+                                    {topic}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+            </div>
           </div>
 
           <div className="md:col-span-1 space-y-6 sticky top-28">
