@@ -314,9 +314,27 @@ const Navbar = () => {
                             key={prog.slug}
                             to={`/course/${prog.slug}`}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-white rounded-md"
+                            className="block px-3 py-2 hover:bg-white rounded-md transition border border-transparent hover:border-slate-100"
                           >
-                            {prog.title}
+                            <div className="text-sm font-semibold text-slate-700 hover:text-blue-600">
+                              {prog.title}
+                            </div>
+                            <div className="text-[10px] text-slate-500 mt-0.5 flex items-center gap-1">
+                              <svg
+                                className="w-3 h-3 text-slate-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                              {prog.duration}
+                            </div>
                           </Link>
                         ))}
                       </div>
@@ -329,9 +347,27 @@ const Navbar = () => {
                             key={prog.slug}
                             to={`/course/${prog.slug}`}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-3 py-2 text-sm text-slate-600 hover:text-indigo-600 hover:bg-white rounded-md"
+                            className="block px-3 py-2 hover:bg-white rounded-md transition border border-transparent hover:border-slate-100"
                           >
-                            {prog.title}
+                            <div className="text-sm font-semibold text-slate-700 hover:text-indigo-600">
+                              {prog.title}
+                            </div>
+                            <div className="text-[10px] text-slate-500 mt-0.5 flex items-center gap-1">
+                              <svg
+                                className="w-3 h-3 text-slate-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                />
+                              </svg>
+                              {prog.duration}
+                            </div>
                           </Link>
                         ))}
                       </div>
