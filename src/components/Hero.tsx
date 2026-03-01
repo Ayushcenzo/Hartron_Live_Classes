@@ -395,7 +395,7 @@ const Hero = () => {
     offset: ["start start", "end end"],
   });
 
- 
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -414,29 +414,36 @@ const Hero = () => {
 
     timeoutId = setTimeout(() => {
       if (containerRef.current) {
-        const scrollableDistance =
-          containerRef.current.scrollHeight - window.innerHeight;
-        let targetScroll = 0;
+        const currentScrollY = window.scrollY;
+        const heroTop = containerRef.current.offsetTop;
+        const heroBottom = heroTop + containerRef.current.scrollHeight;
 
-        if (activeIndex === 0) {
-          targetScroll =
-            containerRef.current.offsetTop + scrollableDistance * 0.45;
-        } else if (activeIndex === 1) {
-          targetScroll =
-            containerRef.current.offsetTop + scrollableDistance * 0.85;
-        } else if (activeIndex === 2) {
-          targetScroll = containerRef.current.offsetTop + 10;
+        // Prevent auto-scrolling if the user has scrolled past the Hero section
+        if (currentScrollY <= heroBottom && currentScrollY >= heroTop - 100) {
+          const scrollableDistance =
+            containerRef.current.scrollHeight - window.innerHeight;
+          let targetScroll = 0;
+
+          if (activeIndex === 0) {
+            targetScroll =
+              heroTop + scrollableDistance * 0.45;
+          } else if (activeIndex === 1) {
+            targetScroll =
+              heroTop + scrollableDistance * 0.85;
+          } else if (activeIndex === 2) {
+            targetScroll = heroTop + 10;
+          }
+
+          document.documentElement.style.scrollBehavior = "smooth";
+          window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth",
+          });
+
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = "auto";
+          }, 1500);
         }
-
-        document.documentElement.style.scrollBehavior = "smooth";
-        window.scrollTo({
-          top: targetScroll,
-          behavior: "smooth",
-        });
-
-        setTimeout(() => {
-          document.documentElement.style.scrollBehavior = "auto";
-        }, 1500);
       }
     }, 5000); // 5 seconds per phase
 
