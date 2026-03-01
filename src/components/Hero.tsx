@@ -399,7 +399,7 @@ const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    return scrollYProgress.onChange((latest) => {
+    return scrollYProgress.on("change", (latest) => {
       if (latest < 0.33) {
         if (activeIndex !== 0) setActiveIndex(0);
       } else if (latest < 0.66) {
@@ -410,9 +410,7 @@ const Hero = () => {
     });
   }, [scrollYProgress, activeIndex]);
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (containerRef.current) {
         const currentScrollY = window.scrollY;
         const heroTop = containerRef.current.offsetTop;

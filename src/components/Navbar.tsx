@@ -23,7 +23,7 @@ const Navbar = () => {
               <img
                 src="https://res.cloudinary.com/dnpn8ljki/image/upload/v1750770016/Hartron_Logo1_ryz9yl.png"
                 alt="Hartron Advanced Skill Centre"
-                className="h-8 md:h-12 w-auto object-contain"
+                className="h-8 md:h-12 w-auto max-w-[65vw] sm:max-w-none object-contain"
               />
             </Link>
           </div>
